@@ -1,0 +1,362 @@
+/* Fonts */
+/* main color: rgb(117, 128, 216) */
+
+@font-face {
+      font-family: 'Linux Biolinum O';
+      src: url('../font/linbiolinum_r-webfont.eot');
+      src: url('../font/linbiolinum_r-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../font/linbiolinum_r-webfont.woff') format('woff'),
+      url('../font/linbiolinum_r-webfont.ttf') format('truetype'),
+      url('../font/linbiolinum_r-webfont.svg#LinuxBiolinumORegular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+}
+
+@font-face {
+      font-family: 'Linux Biolinum O';
+      src: url('../font/linbiolinum_rb-webfont.eot');
+      src: url('../font/linbiolinum_rb-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../font/linbiolinum_rb-webfont.woff') format('woff'),
+      url('../font/linbiolinum_rb-webfont.ttf') format('truetype'),
+      url('../font/linbiolinum_rb-webfont.svg#LinuxBiolinumOBold') format('svg');
+      font-weight: bold;
+      font-style: normal;
+}
+
+@font-face {
+    font-family: 'Linux Biolinum O';
+    src: url('../font/linbiolinum_ri-webfont.eot');
+    src: url('../font/linbiolinum_ri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/linbiolinum_ri-webfont.woff') format('woff'),
+         url('../font/linbiolinum_ri-webfont.ttf') format('truetype'),
+         url('../font/linbiolinum_ri-webfont.svg#LinuxBiolinumOItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}  
+
+@font-face {
+      font-family: 'Champagne And Limousines';
+      src: url('../font/champagne__limousines-webfont.eot');
+      src: url('../font/champagne__limousines-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../font/champagne__limousines-webfont.woff') format('woff'),
+      url('../font/champagne__limousines-webfont.ttf') format('truetype'),
+      url('../font/champagne__limousines-webfont.svg#Champagne&LimousinesRegular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+}
+
+@font-face {
+    font-family: 'Champagne And Limousines';
+    src: url('../font/champagne__limousines_bold-webfont.eot');
+    src: url('../font/champagne__limousines_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/champagne__limousines_bold-webfont.woff') format('woff'),
+         url('../font/champagne__limousines_bold-webfont.ttf') format('truetype'),
+         url('../font/champagne__limousines_bold-webfont.svg#Champagne&LimousinesBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+/* Make sure that footer is at the bottom of the screen */
+
+html,body { margin: 0; padding: 0; height: 100%; }
+.wrapall  { min-height: 100%; position: relative; }
+.wrapmain { padding-bottom: 300px; }
+.wrapcont { display: block; width: 100%; }
+
+footer    { 
+    height: 120px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+/* general stuff */
+
+body {
+    color: black;
+    text-align: center;
+    font-family: 'Linux Biolinum O', sans;
+    background: rgb(246, 248, 252); //url('../img/background2.png');
+}
+
+a, a:hover, a:visited, a:active {
+    text-decoration: none;
+    color: rgb(100,100,100);
+}
+
+a:hover {
+    color: black;
+}
+
+.clearing { clear: both; }
+.initOff  { opacity: 0.0; }
+
+/* loading screen */
+#loading {
+    font-family: sans;
+    font-size: 1.2em;
+    position: absolute;
+    right: 20px;
+    bottom: 50px;
+}
+
+
+/* header */
+
+header {
+    margin-top: 80px;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+header div {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header #title {
+    font-size: 120px;
+    font-family: serif;
+    color: rgb(117, 128, 216);
+}
+
+header #line  {
+    width: 600px;
+    height: 0px;
+    padding: 0px;
+    border-top: 3px solid black;
+    margin-top: 20px;
+}
+
+header #subtitle {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: rgb(117, 128, 216);
+    font-family: 'Champagne And Limousines', 'Futura', serif;
+    position:relative;
+    left: -120px;
+    top: -50px;
+    font-weight: normal;
+}
+
+header #contact {
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+
+/* navigation */
+
+nav {
+    display: block;
+    margin-left: 50px;
+    padding-top: 25px;
+
+    /* 10 px around vertical line on the right */
+    border-right: 1px solid black;
+    padding-right: 10px;
+
+    font-family: 'Champagne And Limousines', 'Futura', sans;
+    font-size: 20px;
+    
+    width: 240px;
+    overflow: hidden;
+    float: left;
+
+}
+
+div.navheader {
+
+    display: block;
+    margin-left: 50px;
+    padding-top: 0px;
+
+    font-family: 'Champagne And Limousines', 'Futura', sans;
+    letter-spacing: 10px;
+    font-size: 15px;
+    
+    color: black;
+
+    width: 263px;
+    overflow: hidden;
+    float: left;
+    text-align: right;
+    margin-bottom: 10px;
+
+}
+
+
+nav ul, nav p { text-align: right; }
+nav ul        { list-style: none; }
+
+nav p {
+    font-size: 1.4em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    color: rgb(117, 128, 216);
+    margin-right: 10px;
+    clear: both;
+}
+
+nav p a,
+nav p a:hover,
+nav p a:visited,
+nav p a:active {
+    color: rgb(117, 128, 216);
+}
+
+
+nav li {   // or nav li.real for non-rounded lavalamp
+    display: block;
+    clear: both;
+    float: right;
+
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    margin-top: 2px;
+
+    /* proper display of lavalamp and rounded background */
+    z-index: 5;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 2px;
+
+}
+ 
+nav li.active a,
+  nav li.active a:hover,
+  nav li.active a:active,
+  nav li.active a:visited { color: black; }
+
+nav li.backLava { border-bottom: 2px solid black; }
+
+
+
+/* main section */
+
+section#main {
+    display: block;
+    text-align: left;
+    padding-top: 55px;
+    overflow-x: hidden;
+}
+
+section#main div#underconstruction {
+    font-family: 'Champagne And Limousines', serif;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+section#main p { margin-top: 0px; margin-left: 0px; margin-right: 10px;
+		 margin-bottom: 20px;
+		 padding: 0; font-size: 20px; max-width: 650px;
+	         text-align: justify; }
+section#main p.title {
+    font-family: 'Champagne And Limousines', 'Futura', serif;
+    font-size: 25px;
+    margin-bottom: 0.5em;
+}
+section#main p.small {
+    font-size: 17px;
+}
+
+div.mainpage {
+    display: none;
+    position: relative;
+    margin-left: 35px;
+}
+
+/* contact section */
+
+section#contact {
+
+    background: rgb(117, 128, 216);
+    display: block;
+
+    width: 100%;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    margin-left: 0px;
+    margin-right: 0px;
+
+    color: white;
+    z-index: 10;
+    height: 18px;
+    left: 0px;
+
+}
+
+section#contact.fixed {
+    position: fixed;
+    bottom: 0px;
+
+    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
+
+}
+
+section#contact.anchored {
+    position: static;
+}
+
+// used to detect when section#contact goes out of view
+.anchortest {
+    display:block;
+    width:100%;
+    margin:0;
+    padding:0;
+}
+
+
+section#contact a,
+section#contact a:hover,
+section#contact a:visited,
+section#contact a:active {
+    color: white;
+    border-bottom: 1px dotted white;
+}
+
+
+/* footer */
+
+footer {
+    clear: both;
+    color: white;
+    background: rgb(117, 128, 216);
+    font-size: 0.8em;
+
+    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+
+}
+
+footer #rest {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+iframe {
+    margin-left: auto;
+    margin-right: auto;
+}
+
