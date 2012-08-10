@@ -139,7 +139,7 @@ $.fn.switchToSVG = function() {
 
 function setupPage() {
 
-    $("#contact").mailToLinks();
+    $("#main").mailToLinks();
     $("div.mainpage").targetLinks();
     if (Modernizr.svg) { $("header").switchToSVG(); }
 
