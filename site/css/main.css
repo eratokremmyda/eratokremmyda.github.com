@@ -59,10 +59,12 @@
 
 /* Make sure that footer is at the bottom of the screen */
 
+/*
 html,body { margin: 0; padding: 0; height: 100%; }
 .wrapall  { min-height: 100%; position: relative; }
 .wrapmain { padding-bottom: 300px; }
 .wrapcont { display: block; width: 100%; }
+*/
 
 footer    { 
     height: 120px;
