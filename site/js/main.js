@@ -38,8 +38,8 @@ $.fn.enableYoutube = function() {
 /* mailto links */
 
 $.fn.mailToLinks = function() {
-    this.find("a.mailto").each(function(w,link) {
-	$(link).attr('href', "mailto:" + $(link).text().replace("(at)", "@"));
+    this.find("a.contactaddress").each(function(w,link) {
+	$(link).attr('href', "mailto:" + $(link).text().replace("(REMOVEME)",""));
     });
 };
 
