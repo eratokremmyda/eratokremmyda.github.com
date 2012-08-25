@@ -59,15 +59,13 @@
 
 /* Make sure that footer is at the bottom of the screen */
 
-/*
 html,body { margin: 0; padding: 0; height: 100%; }
 .wrapall  { min-height: 100%; position: relative; }
 .wrapmain { padding-bottom: 300px; }
 .wrapcont { display: block; width: 100%; }
-*/
 
 footer    { 
-    height: 120px;
+    height: 130px;
     display: block;
     width: 100%;
     margin: 0;
@@ -159,7 +157,6 @@ header #contact {
 
 nav {
     display: block;
-    margin-left: 50px;
     padding-top: 25px;
 
     /* 10 px around vertical line on the right */
@@ -169,7 +166,7 @@ nav {
     font-family: 'Champagne And Limousines', 'Futura', sans;
     font-size: 20px;
     
-    width: 240px;
+    width: 290px;
     overflow: hidden;
     float: left;
 
@@ -208,6 +205,7 @@ nav p {
     color: rgb(117, 128, 216);
     margin-right: 10px;
     clear: both;
+    margin-left: 50px;
 }
 
 nav p a,
@@ -234,10 +232,10 @@ nav li {   // or nav li.real for non-rounded lavalamp
     z-index: 5;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 
 }
- 
+
 nav li.active a,
   nav li.active a:hover,
   nav li.active a:active,
@@ -256,13 +254,6 @@ section#main {
     overflow-x: hidden;
 }
 
-section#main div#underconstruction {
-    font-family: 'Champagne And Limousines', serif;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 20px;
-}
-
 section#main p { margin-top: 0px; margin-left: 0px; margin-right: 10px;
 		 margin-bottom: 20px;
 		 padding: 0; font-size: 20px; max-width: 650px;
@@ -273,13 +264,25 @@ section#main p.title {
     margin-bottom: 0.5em;
 }
 section#main p.small {
-    font-size: 17px;
+    font-size: 15px;
+    font-style: italic;
 }
 
 div.mainpage {
     display: none;
     position: relative;
     margin-left: 35px;
+}
+
+div.mainpage[linkname='bio'] {
+    max-width: 650px;
+}
+
+div.mainpage[linkname='bio'] img {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 /* contact section */

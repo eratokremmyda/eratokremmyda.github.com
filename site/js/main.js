@@ -39,7 +39,7 @@ $.fn.enableYoutube = function() {
 
 $.fn.mailToLinks = function() {
     this.find("a.mailto").each(function(w,link) {
-	$(link).attr('href', "mailto:" + $(link).text().replace(" (at) ", "@"));
+	$(link).attr('href', "mailto:" + $(link).text().replace("(at)", "@"));
     });
 };
 
@@ -139,7 +139,7 @@ $.fn.switchToSVG = function() {
 
 function setupPage() {
 
-    $("#main").mailToLinks();
+    $("#contact").mailToLinks();
     $("div.mainpage").targetLinks();
     if (Modernizr.svg) { $("header").switchToSVG(); }
 
@@ -229,7 +229,7 @@ function preAnimation() {
 	.css('opacity', '0.0');
     $("nav li.real,nav p")
         .css({ position: 'relative', right: '-' + (50 + $(this).width()) + 'px' });
-    $("section#main")
+    $("section#contact")
         .css('opacity', '0.0');
 
 }
@@ -275,8 +275,27 @@ function introAnimation() {
 	mySeq(
 	    [ function(next) { $("header #title").animate({ opacity: '1.0' }, 1500, next); },
 //	      function(next) { $("header #line").animate({ width: '600px', opacity: '1.0' }, 1000, next) },
-	      function(next) { $("header #subtitle").animate({ opacity: '1.0' }, 1500, next) },
-	      function(next) { $("section#main").animate({ opacity: '1.0' }, 1000, next); }])
+	      myPar([ 
+		  function(next) { $("header #subtitle").animate({ opacity: '1.0' }, 1500, next) },
+		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); }
+	      ]),
+	      myPar(
+		  [ function(next) { $("div.navheader").animate({opacity: '1.0'}, 1000, next); },
+		    function(next) { $("nav").animate({opacity: '1.0' }, 1000, next); },
+		    function(next) { 
+			if ($("a.default").length > 0) {
+			    $("a.default").parent().mainPageSelectFade();
+			}
+			next();
+		    },
+		    myPar(
+			$("nav li.real, nav p").map( function(i, elm) {
+			    var f = (function (next) { $(elm).delay( i * 100 ).animate({ right: '0px' }, 500 + ( 40 * (Math.max(6-i,0) )), next); });
+			    return f;
+			})
+		    )]),
+	      function(next) { postAnimation(); next(); }
+	    ])
     );
 
 };
