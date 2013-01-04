@@ -265,6 +265,14 @@ section#main p.title {
     font-size: 25px;
     margin-bottom: 0.5em;
 }
+
+section#main a,
+section#main a:active,
+section#main a:hover,
+section#main a:visited { color : rgb(117, 128, 216) ;
+			 font-weight: bold; }
+    
+
 section#main p.small {
     font-size: 15px;
     font-style: italic;
