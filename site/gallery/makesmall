@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm *-small.jpg
+for i in *.jpg; do
+    convert $i -scale 650x `echo $i | sed -e 's/\.jpg/-small.jpg/' -`
+done
+

@@ -239,6 +239,7 @@ function postAnimation() {
     // load resources not shown in animation
     // (saves time since animation happens on $window.load)
     $("section#main").enableYoutube();
+    Galleria.run("#photos");
     
 }
 
