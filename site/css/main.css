@@ -266,6 +266,13 @@ section#main p.title {
     margin-bottom: 0.5em;
 }
 
+section#main p.subtitle {
+    font-size: 23px;
+    margin-bottom: 1em;
+    margin-top: 2em; 
+    color: rgb(117, 128, 216) ;
+}
+
 section#main a,
 section#main a:active,
 section#main a:hover,
