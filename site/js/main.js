@@ -77,8 +77,49 @@ $.fn.navDeactivateOption = function() {
     return this;
 };
 
+
+/* show/hide nav submenus */
+
+$.fn.showSubMenu = function() {
+
+    var mySubMenu = $(this);
+    console.log(mySubMenu);
+    myRun(mySeq([
+	function(next) { mySubMenu.show(100, next); },
+	function(next) { mySubMenu.find("li.real").stop(true,true)
+			 .each(function(i,elm) {
+			     $(elm).css({ right: '-' + (50 + $(elm).width()) + 'px' });
+			 }); next(); },
+	myPar(
+	    mySubMenu.find("li.real").map( function(i, elm) {
+		var f = (function (next) { $(elm).delay( i * 30 ).animate({ right: '0px' }, 100 + ( 20 * (Math.max(6-i,0) )), next); });
+		return f;
+	    })
+	)]));
+    return this;
+};
+
+$.fn.hideSubMenu = function() {
+
+    var mySubMenu = $(this);
+    myRun(mySeq([
+
+	myPar(
+	    mySubMenu.find("li.real").map( function(i, elm) {
+		var f = (function (next) { $(elm).delay( i * 30 ).animate({ right: '-' + (50 + $(elm).width()) + 'px' }, 100 + ( 20 * (Math.max(6-i,0) )), next); });
+		return f;
+	    }).add( function(next) { next(); } )),
+
+	function(next) { mySubMenu.hide(100, next); }
+
+    ]));
+    return this;
+};
+
+
+
 /* hide/select the main page
-   activates the <div class="mainpage" linkname="(1)"> where (1) is the href of the current option */
+   activates the <div class="mainpage" id="(1)"> where (1) is the href of the current option */
 
 $.fn.mainPageHide = function(anim) {
 
@@ -97,9 +138,11 @@ $.fn.mainPageHide = function(anim) {
 };
 
 $.fn.mainPageSelect = function() {
-
+    
     var id = $(this).find("a").attr("href").substring(1);
-    $("section#main div.mainpage[linkname='" + id + "']")
+    if (id == "") return this;
+
+    $("section#main div.mainpage[id=\'" + id + "\']")
 	.addClass("active")
 	.show().css({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' })
 	.animate({ left: '0px'  },
@@ -114,7 +157,9 @@ $.fn.mainPageSelect = function() {
 $.fn.mainPageSelectFade = function() {
 
     var id = $(this).find("a").attr("href").substring(1);
-    $("section#main div.mainpage[linkname='" + id + "']")
+    if (id == "") return this;
+
+    $("section#main div.mainpage#[id=\'" + id + "\']")
 	.addClass("active")
 	.show().css('opacity' , '0.0')
 	.animate({ 'opacity' : '1.0' },
@@ -136,6 +181,36 @@ $.fn.switchToSVG = function() {
     );
 
 }
+
+
+/* easy CPS-style animation combinators */
+function mySeq(l) {
+    function cpsSeqAux(l,i,next) {
+	if (l.length > i) { l[i](function () { cpsSeqAux(l,i+1,next); }); }
+	else              { next(); }
+    }
+    
+    var f = (function (next) { cpsSeqAux(l,0,next); });
+    return f;
+    
+}
+
+function myPar(l) {
+    
+    var f =
+	(function (next) {
+	    var hasRun   = 0;
+	    var wrapNext = (function() { hasRun++; if (hasRun == l.length) { next(); } });
+	    $.each(l, function (idx, elm) { elm(wrapNext); });
+	});
+    return f;
+    
+}
+
+function myRun(f) {
+    f( (function(){}) );
+}
+
 
 function setupPage() {
 
@@ -163,15 +238,40 @@ function setupPage() {
     */
 
     // menu
-    // when an option is clicked, the div.mainpage with the right linkname is shown
+    // when an option is clicked, the div.mainpage with the right id is shown
 
-    $("nav p a").click(function() {
-	$(".lavalamp").find("li.real").navDeactivateOption();
-	$(this).parent().mainPageHide(false).mainPageSelect();
+    $("nav p a").click(function(event) {
+	event.stopPropagation();
+	var mySubMenu = $(this).parent().next(".lavalamp");
+	var otherSubMenus = $(this).parent().siblings(".lavalamp:visible").not(mySubMenu);
+	var delay = 0;
+	if (otherSubMenus.length > 0) { otherSubMenus.hideSubMenu(); delay = 200; }
+
+	if (mySubMenu.length == 0) {
+
+	    /* normal page, no submenu */
+	    $(".lavalamp").find("li.real").navDeactivateOption();
+	    $(this).parent().mainPageHide(false).mainPageSelect();
+	    return false;
+
+	}
+
+	if (mySubMenu.css("display") == "block") {
+
+	    $(mySubMenu).delay(delay).hideSubMenu();
+
+	} else {
+
+	    $(mySubMenu).delay(delay).showSubMenu();
+
+	}
+
 	return false;
+
     });
 
-    $("header #title a").click(function() {
+    $("header #title a").click(function(event) {
+	event.stopPropagation();
 	$(".lavalamp").find("li.real").navDeactivateOption();
 	$(this).parent().mainPageHide(false).mainPageSelectFade();
 	return false;
@@ -184,7 +284,9 @@ function setupPage() {
 	      homeTop : 0, homeLeft : 500, homeWidth: 500, homeHeight : 0,
 	      click : 
 
-	      function() {
+	      function(event) {
+
+		  event.stopPropagation();
 		  
 		  $(this).stop(true,true);
 		  wasActive = $(this).hasClass("active");
@@ -231,6 +333,7 @@ function preAnimation() {
         .css({ position: 'relative', right: '-' + (50 + $(this).width()) + 'px' });
     $("section#contact")
         .css('opacity', '0.0');
+    $(".lavalamp").hide();
 
 }
 
@@ -243,33 +346,6 @@ function postAnimation() {
 }
 
 function introAnimation() {
-
-    function mySeq(l) {
-	function cpsSeqAux(l,i,next) {
-	    if (l.length > i) { l[i](function () { cpsSeqAux(l,i+1,next); }); }
-	    else              { next(); }
-	}
-
-	var f = (function (next) { cpsSeqAux(l,0,next); });
-	return f;
-
-    }
-
-    function myPar(l) {
-
-	var f =
-	    (function (next) {
-		var hasRun   = 0;
-		var wrapNext = (function() { hasRun++; if (hasRun == l.length) { next(); } });
-		$.each(l, function (idx, elm) { elm(wrapNext); });
-	    });
-	return f;
-
-    }
-    
-    function myRun(f) {
-	f( (function(){}) );
-    }
 
     myRun(
 	mySeq(
@@ -289,7 +365,7 @@ function introAnimation() {
 			next();
 		    },
 		    myPar(
-			$("nav li.real, nav p").map( function(i, elm) {
+			$("nav p").map( function(i, elm) {
 			    var f = (function (next) { $(elm).delay( i * 100 ).animate({ right: '0px' }, 500 + ( 40 * (Math.max(6-i,0) )), next); });
 			    return f;
 			})

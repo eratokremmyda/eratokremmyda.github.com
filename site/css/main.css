@@ -109,7 +109,7 @@ a:hover {
 /* header */
 
 header {
-    margin-top: 80px;
+    margin-top: 50px;
     margin-bottom: 0px;
     text-align: center;
     margin-left: auto;
@@ -252,7 +252,7 @@ nav li.backLava { border-bottom: 2px solid black; }
 section#main {
     display: block;
     text-align: left;
-    padding-top: 55px;
+    padding-top: 15px;
     overflow-x: hidden;
 }
 
@@ -291,11 +291,11 @@ div.mainpage {
     margin-left: 35px;
 }
 
-div.mainpage[linkname='bio'] {
+div.mainpage#bio {
     max-width: 650px;
 }
 
-div.mainpage[linkname='bio'] img {
+div.mainpage#bio img {
     float: right;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -307,6 +307,8 @@ div.mainpage[linkname='bio'] img {
 section#contact {
 
     background: rgb(117, 128, 216);
+    color: white;
+
     display: block;
 
     width: 100%;
@@ -317,7 +319,6 @@ section#contact {
     margin-left: 0px;
     margin-right: 0px;
 
-    color: white;
     z-index: 10;
     height: 18px;
     left: 0px;
@@ -331,6 +332,10 @@ section#contact.fixed {
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
     box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
+
+//    background: rgb(246, 248, 252);
+//    border-top: 1px solid rgb(117, 128, 216);
+//    color: rgb(117, 128, 216);
 
 }
 
@@ -353,6 +358,14 @@ section#contact a:visited,
 section#contact a:active {
     color: white;
     border-bottom: 1px dotted white;
+}
+
+section#contact.fixed a,
+section#contact.fixed a:hover,
+section#contact.fixed a:visited,
+section#contact.fixed a:active {
+//    color: rgb(117, 128, 216);
+//    border-bottom: 1px dotted rgb(117, 128, 216);
 }
 
 
