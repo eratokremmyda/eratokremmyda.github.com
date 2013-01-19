@@ -83,10 +83,9 @@ $.fn.navDeactivateOption = function() {
 $.fn.showSubMenu = function() {
 
     var mySubMenu = $(this);
-    console.log(mySubMenu);
     myRun(mySeq([
 	function(next) { mySubMenu.show(100, next); },
-	function(next) { mySubMenu.find("li.real").stop(true,true)
+	function(next) { $.waypoints("refresh"); mySubMenu.find("li.real").stop(true,true)
 			 .each(function(i,elm) {
 			     $(elm).css({ right: '-' + (50 + $(elm).width()) + 'px' });
 			 }); next(); },
@@ -110,7 +109,8 @@ $.fn.hideSubMenu = function() {
 		return f;
 	    }).add( function(next) { next(); } )),
 
-	function(next) { mySubMenu.hide(100, next); }
+	function(next) { mySubMenu.hide(100, next); },
+	function(next) { $.waypoints("refresh"); next(); }
 
     ]));
     return this;
@@ -144,10 +144,13 @@ $.fn.mainPageSelect = function() {
 
     $("section#main div.mainpage[id=\'" + id + "\']")
 	.addClass("active")
-	.show().css({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' })
+	.show();
+    $.waypoints('refresh');
+    $("section#main div.mainpage[id=\'" + id + "\']")
+	.css({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' })
 	.animate({ left: '0px'  },
 		 800,
-		 function () { $(this).autoplayYoutube(); $.waypoints('refresh'); })
+		 function () { $(this).autoplayYoutube(); })
     // autoplayYoutube makes the first embedded youtube video play automatically
     return this;
 
@@ -243,18 +246,23 @@ function setupPage() {
     $("nav p a").click(function(event) {
 	event.stopPropagation();
 	var mySubMenu = $(this).parent().next(".lavalamp");
-	var otherSubMenus = $(this).parent().siblings(".lavalamp:visible").not(mySubMenu);
 	var delay = 0;
-	if (otherSubMenus.length > 0) { otherSubMenus.hideSubMenu(); delay = 200; }
 
 	if (mySubMenu.length == 0) {
 
 	    /* normal page, no submenu */
 	    $(".lavalamp").find("li.real").navDeactivateOption();
+	    $(this).parent().siblings(".lavalamp:visible").hideSubMenu();
 	    $(this).parent().mainPageHide(false).mainPageSelect();
 	    return false;
 
+	} else {
+
+	    var otherSubMenus = $(this).parent().siblings(".lavalamp:visible").not(mySubMenu);
+	    if (otherSubMenus.length > 0) { $(otherSubMenus).hideSubMenu(); delay = 200; }
+
 	}
+	
 
 	if (mySubMenu.css("display") == "block") {
 

@@ -63,7 +63,7 @@
 
 html,body { margin: 0; padding: 0; height: 100%; }
 .wrapall  { min-height: 100%; position: relative; }
-.wrapmain { padding-bottom: 300px; }
+.wrapmain { padding-bottom: 350px; }
 .wrapcont { display: block; width: 100%; }
 
 footer    { 
