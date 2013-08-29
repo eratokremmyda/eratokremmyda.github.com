@@ -127,7 +127,7 @@ header div {
 header #title {
     font-size: 120px;
     font-family: serif;
-    color: rgb(117, 128, 216);
+    color: rgb(69, 122, 204);
 }
 
 header #line  {
@@ -141,7 +141,7 @@ header #line  {
 header #subtitle {
     font-size: 20px;
     letter-spacing: 3px;
-    color: rgb(117, 128, 216);
+    color: rgb(69, 122, 204);
     font-family: 'Champagne And Limousines', 'Futura', serif;
     position:relative;
     left: -120px;
@@ -204,7 +204,7 @@ nav p {
     border-bottom: 1px solid black;
     margin-top: 25px;
     margin-bottom: 5px;
-    color: rgb(117, 128, 216);
+    color: rgb(69, 122, 204);
     margin-right: 10px;
     clear: both;
     margin-left: 50px;
@@ -214,7 +214,7 @@ nav p a,
 nav p a:hover,
 nav p a:visited,
 nav p a:active {
-    color: rgb(117, 128, 216);
+    color: rgb(69, 122, 204);
 }
 
 
@@ -270,13 +270,13 @@ section#main p.subtitle {
     font-size: 23px;
     margin-bottom: 1em;
     margin-top: 2em; 
-    color: rgb(117, 128, 216) ;
+    color: rgb(69, 122, 204) ;
 }
 
 section#main a,
 section#main a:active,
 section#main a:hover,
-section#main a:visited { color : rgb(117, 128, 216) ;
+section#main a:visited { color : rgb(69, 122, 204) ;
 			 font-weight: bold; }
     
 
@@ -306,7 +306,7 @@ div.mainpage#bio img {
 
 section#contact {
 
-    background: rgb(117, 128, 216);
+    background: rgb(69, 122, 204);
     color: white;
 
     display: block;
@@ -334,8 +334,8 @@ section#contact.fixed {
     box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
 
 //    background: rgb(246, 248, 252);
-//    border-top: 1px solid rgb(117, 128, 216);
-//    color: rgb(117, 128, 216);
+//    border-top: 1px solid rgb(69, 122, 204);
+//    color: rgb(69, 122, 204);
 
 }
 
@@ -364,8 +364,8 @@ section#contact.fixed a,
 section#contact.fixed a:hover,
 section#contact.fixed a:visited,
 section#contact.fixed a:active {
-//    color: rgb(117, 128, 216);
-//    border-bottom: 1px dotted rgb(117, 128, 216);
+//    color: rgb(69, 122, 204);
+//    border-bottom: 1px dotted rgb(69, 122, 204);
 }
 
 
@@ -374,7 +374,7 @@ section#contact.fixed a:active {
 footer {
     clear: both;
     color: white;
-    background: rgb(117, 128, 216);
+    background: rgb(69, 122, 204);
     font-size: 0.8em;
 
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
