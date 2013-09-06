@@ -144,7 +144,7 @@ header #subtitle {
     color: rgb(69, 122, 204);
     font-family: 'Champagne And Limousines', 'Futura', serif;
     position:relative;
-    left: -120px;
+    left: -70px;
     top: -50px;
     font-weight: normal;
 }
@@ -368,6 +368,17 @@ section#contact.fixed a:active {
 //    border-bottom: 1px dotted rgb(69, 122, 204);
 }
 
+#construction {
+    position: fixed; right:20px; bottom: 60px; font-size:1.2em;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+    
 
 /* footer */
 

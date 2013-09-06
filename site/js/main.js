@@ -361,7 +361,8 @@ function introAnimation() {
 //	      function(next) { $("header #line").animate({ width: '600px', opacity: '1.0' }, 1000, next) },
 	      myPar([ 
 		  function(next) { $("header #subtitle").animate({ opacity: '1.0' }, 1500, next) },
-		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); }
+		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); },
+		  function(next) { $("#construction").animate({ opacity: '1.0' }, 1000, next); }
 	      ]),
 	      myPar(
 		  [ function(next) { $("div.navheader").animate({opacity: '1.0'}, 1000, next); },
