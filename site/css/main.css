@@ -369,7 +369,7 @@ section#contact.fixed a:active {
 }
 
 #construction {
-    position: fixed; right:20px; bottom: 60px; font-size:1.2em;
+    position: fixed; right:20px; bottom: 80px; font-size:1.2em;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
     -webkit-border-radius: 10px;
