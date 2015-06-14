@@ -37,26 +37,55 @@
 /* Champagne And Limousines */
 /* A font by Lauren Thompson (Nymphont) -> www.nymfont.com */
 @font-face {
-      font-family: 'Champagne And Limousines';
-      src: url('../font/champagne__limousines-webfont.eot');
-      src: url('../font/champagne__limousines-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../font/champagne__limousines-webfont.woff') format('woff'),
-      url('../font/champagne__limousines-webfont.ttf') format('truetype'),
-      url('../font/champagne__limousines-webfont.svg#Champagne&LimousinesRegular') format('svg');
-      font-weight: normal;
-      font-style: normal;
+    font-family: 'Champagne And Limousines';
+    src: url('../font/champagne__limousines-webfont.eot');
+    src: url('../font/champagne__limousines-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/champagne__limousines-webfont.woff2') format('woff2'),
+         url('../font/champagne__limousines-webfont.woff') format('woff'),
+         url('../font/champagne__limousines-webfont.ttf') format('truetype'),
+         url('../font/champagne__limousines-webfont.svg#champagne__limousinesregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'Champagne And Limousines';
     src: url('../font/champagne__limousines_bold-webfont.eot');
     src: url('../font/champagne__limousines_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/champagne__limousines_bold-webfont.woff2') format('woff2'),
          url('../font/champagne__limousines_bold-webfont.woff') format('woff'),
          url('../font/champagne__limousines_bold-webfont.ttf') format('truetype'),
-         url('../font/champagne__limousines_bold-webfont.svg#Champagne&LimousinesBold') format('svg');
+         url('../font/champagne__limousines_bold-webfont.svg#champagne__limousinesbold') format('svg');
     font-weight: bold;
     font-style: normal;
 
+}
+
+/* Whipsmart */
+/* A font by Lauren Thompson (Nymphont) -> www.nymfont.com */
+@font-face {
+    font-family: 'Whipsmart';
+    src: url('../font/whipsmart_bold-webfont.eot');
+    src: url('../font/whipsmart_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/whipsmart_bold-webfont.woff2') format('woff2'),
+         url('../font/whipsmart_bold-webfont.woff') format('woff'),
+         url('../font/whipsmart_bold-webfont.ttf') format('truetype'),
+         url('../font/whipsmart_bold-webfont.svg#whipsmartbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Whipsmart';
+    src: url('../font/whipsmart-webfont.eot');
+    src: url('../font/whipsmart-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/whipsmart-webfont.woff2') format('woff2'),
+         url('../font/whipsmart-webfont.woff') format('woff'),
+         url('../font/whipsmart-webfont.ttf') format('truetype'),
+         url('../font/whipsmart-webfont.svg#whipsmartregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* Make sure that footer is at the bottom of the screen */
@@ -81,7 +110,7 @@ body {
     color: black;
     text-align: center;
     font-family: 'Linux Biolinum O', sans;
-    background: rgb(246, 248, 252); //url('../img/background2.png');
+    background: rgb(246, 248, 252);
 }
 
 a, a:hover, a:visited, a:active {
@@ -164,7 +193,7 @@ nav {
     border-right: 1px solid black;
     padding-right: 10px;
 
-    font-family: 'Champagne And Limousines', 'Futura', sans;
+    font-family: 'Whipsmart', serif;
     font-size: 20px;
     
     width: 290px;
@@ -286,15 +315,16 @@ section#main ul { margin-top: 0px; margin-left: 0px; margin-right: 10px;
                  list-style: none;
                 }
 
-section#main ul li:before{
+div.mainpage#news ul li:before{
     content:"*"; position:relative; left:-10px; color: rgb(69, 122, 204);
     top: 5px;
 }
-section#main ul li {
+
+div.mainpage#news ul li {
     text-indent: -5px;
     border-bottom: 2px solid rgb(69, 122, 204);
     padding: 20px;
-    font-family: 'Champagne and Limousines', 'Futura', serif;
+    font-family: 'Whipsmart', serif;
     font-size: 20px;
     margin-top: 25px;
     margin-bottom: 25px;
@@ -340,10 +370,18 @@ div.mainpage tr:nth-child(odd) {
     background: rgb(208, 218, 239);
 }
 
-div.mainpage#cv table:first-of-type td {
+div.mainpage#cv table:first-of-type tr td:nth-of-type(1) {
+    width: 30%;
+}
+
+div.mainpage#cv table:first-of-type tr td:nth-of-type(2) {
+    width: 37%;
+}
+
+div.mainpage#cv table:first-of-type tr td:nth-of-type(3) {
     width: 33%;
 }
-                                       
+
 div.mainpage#cv td {
     font-size: 15px;
     margin: 0; padding: 5px;
@@ -453,6 +491,7 @@ div.mainpage#photos {
 
 .photoalbum {
     padding-left: 10px; padding-right: 10px;
+    padding-bottom: 30px;
     display: inline-block;
     width: 210px;
 }
