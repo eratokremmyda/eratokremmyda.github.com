@@ -1,0 +1,36 @@
+#!/bin/bash
+
+firstone=true
+mypwd=`pwd`
+myname=`basename $mypwd`
+
+cat <<EOF
+<div class="photoalbum">
+<div id="photos???" class="photogallery"></div>
+<span style="display: none;"><span class="photocaption">Photos by ???</span></span>
+<span class="photogallerytitle">???</span>
+<script type="text/javascript">
+window.runGallery("#photos???",
+[
+EOF
+
+for i in *-small.jpg; do
+
+    if $firstone; then
+        firstone=false
+    else
+        echo ','
+    fi
+    NORMAL=`echo $i | sed -e 's/-small//' -`
+    cat <<EOF 
+{ image: "site/gallery/$myname/$i", big: "site/gallery/$myname/$NORMAL" }
+EOF
+
+done
+
+cat <<EOF
+]);
+</script>
+</div>
+
+EOF

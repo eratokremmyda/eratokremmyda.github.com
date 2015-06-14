@@ -63,7 +63,7 @@
 
 html,body { margin: 0; padding: 0; height: 100%; }
 .wrapall  { min-height: 100%; position: relative; }
-.wrapmain { padding-bottom: 350px; }
+.wrapmain { padding-bottom: 800px; max-width: 1200px; margin-left: auto; margin-right: auto; }
 .wrapcont { display: block; width: 100%; }
 
 footer    { 
@@ -159,7 +159,6 @@ header #contact {
 
 nav {
     display: block;
-    padding-top: 25px;
 
     /* 10 px around vertical line on the right */
     border-right: 1px solid black;
@@ -174,26 +173,6 @@ nav {
 
 }
 
-div.navheader {
-
-    display: block;
-    margin-left: 50px;
-    padding-top: 0px;
-
-    font-family: 'Champagne And Limousines', 'Futura', sans;
-    letter-spacing: 10px;
-    font-size: 15px;
-    
-    color: black;
-
-    width: 263px;
-    overflow: hidden;
-    float: left;
-    text-align: right;
-    margin-bottom: 10px;
-
-}
-
 
 nav ul, nav p { text-align: right; }
 nav ul        { list-style: none; }
@@ -205,46 +184,63 @@ nav p {
     margin-top: 25px;
     margin-bottom: 5px;
     color: rgb(69, 122, 204);
-    margin-right: 10px;
     clear: both;
+    margin-right: 10px;
     margin-left: 50px;
 }
+
+nav p:first-of-type { margin-top: 0px; }
 
 nav p a,
 nav p a:hover,
 nav p a:visited,
 nav p a:active {
-    color: rgb(69, 122, 204);
+  width: 100%;
+  display: block;
+  transition: background-color 0.4s ease;
+  color: rgb(69, 122, 204);
+  background: rgb(246, 248, 252);
 }
 
+nav p a:hover {
+  background: rgb(69, 122, 204);
+  color: white;
+}
 
-nav li {   // or nav li.real for non-rounded lavalamp
+nav p a.active {
+  background: rgb(103, 148, 219);
+  color: black;
+}
+
+nav li.real {
     display: block;
     clear: both;
     float: right;
-
-    -moz-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    width: 100%;
 
     margin-top: 2px;
+    margin-bottom: 2px;
 
-    /* proper display of lavalamp and rounded background */
-    z-index: 5;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 3px;
-
+    margin-right: 10px;
 }
 
-nav li.active a,
-  nav li.active a:hover,
-  nav li.active a:active,
-  nav li.active a:visited { color: black; }
+nav li.real a,
+nav li.real a:hover,
+nav li.real a:visited,
+nav li.real a:active {
+    display: block;
+    width: 100%;
+    transition: background-color 0.4s ease;
+    color: black;
+}
 
-nav li.backLava { border-bottom: 2px solid black; }
+nav li.real a:hover {
+  background: rgb(69, 122, 204);
+  color: white;
+}
 
+nav li.backLava {
+}
 
 
 /* main section */
@@ -252,7 +248,6 @@ nav li.backLava { border-bottom: 2px solid black; }
 section#main {
     display: block;
     text-align: left;
-    padding-top: 15px;
     overflow-x: hidden;
 }
 
@@ -273,14 +268,41 @@ section#main p.subtitle {
     color: rgb(69, 122, 204) ;
 }
 
+section#main p.firstSubtitle {
+    font-size: 23px;
+    color: rgb(69, 122, 204) ;
+}
+
 section#main a,
 section#main a:active,
 section#main a:hover,
 section#main a:visited { color : rgb(69, 122, 204) ;
 			 font-weight: bold; }
-    
 
-section#main p.small {
+section#main ul { margin-top: 0px; margin-left: 0px; margin-right: 10px;
+		 margin-bottom: 20px;
+		 padding: 0; font-size: 20px;
+	         text-align: justify;
+                 list-style: none;
+                }
+
+section#main ul li:before{
+    content:"*"; position:relative; left:-10px; color: rgb(69, 122, 204);
+    top: 5px;
+}
+section#main ul li {
+    text-indent: -5px;
+    border-bottom: 2px solid rgb(69, 122, 204);
+    padding: 20px;
+    font-family: 'Champagne and Limousines', 'Futura', serif;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
+
+
+section#main .small {
     font-size: 15px;
     font-style: italic;
 }
@@ -291,15 +313,59 @@ div.mainpage {
     margin-left: 35px;
 }
 
+div.mainpage.music {
+    font-family: 'Champagne and Limousines', 'Futura', serif;
+}
+
 div.mainpage#bio {
-    max-width: 650px;
+    max-width: 850px;
 }
 
 div.mainpage#bio img {
     float: right;
-    margin-top: 10px;
-    margin-bottom: 10px;
     margin-left: 20px;
+}
+
+div.mainpage#cv {
+    max-width: 850px;
+}
+
+div.mainpage table {
+    width: 100%;
+    border-collapse: 0;
+    border-spacing: 0;
+}
+
+div.mainpage tr:nth-child(odd) {
+    background: rgb(208, 218, 239);
+}
+
+div.mainpage#cv table:first-of-type td {
+    width: 33%;
+}
+                                       
+div.mainpage#cv td {
+    font-size: 15px;
+    margin: 0; padding: 5px;
+}
+
+div.mainpage#cv tr {
+    margin-bottom: 10px;
+}
+
+div.mainpage#cv div.subtitle {
+    font-size: 23px;
+    color: rgb(69, 122, 204);
+    display: block;
+    width: 100%;
+}
+
+div.mainpage#news {
+    max-width: 850px;
+}
+
+div.mainpage#news .title {
+    color: rgb(69, 122, 204);
 }
 
 /* contact section */
@@ -378,7 +444,47 @@ section#contact.fixed a:active {
     background: rgba(255, 255, 255, 0.5);
 }
 
-    
+
+/* gallery */
+div.mainpage#photos {
+    max-width: 850px;
+    overflow-y: hidden;
+}
+
+.photoalbum {
+    padding-left: 10px; padding-right: 10px;
+    display: inline-block;
+    width: 210px;
+}
+
+.photogallery {
+    width: 210px;
+    height: 180px;
+}
+
+.photogallerytitle {
+    text-align: center;
+    font-family: 'Champagne And Limousines', 'Futura', serif;
+    width: 100%;
+    display: block;
+    font-size: 23px;
+}
+
+.photogallerysubtitle {
+    text-align: left;
+    font-family: 'Champagne And Limousines', 'Futura', serif;
+    width: 100%;
+    text-align: justify;
+    display: block;
+    font-size: 18px;
+}
+
+.photocaption {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Linux Biolinum O', sans;
+    font-size: 23px;
+}
 
 /* footer */
 

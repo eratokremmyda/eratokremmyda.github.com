@@ -1,36 +1,54 @@
 /* parameters */
 
-var navActivateCSS   = { backgroundColor : 'rgb(210,210,210)' };
-var navDeactivateCSS = { backgroundColor : 'rgb(246, 248, 252)' };
+var navActivateCSS   = { backgroundColor: 'rgb(103, 148, 219)'};
+var navDeactivateCSS = { backgroundColor: 'rgb(246, 248, 252)'};
 
 
 $.extend( $.easing, { def : 'easeOutQuad' } );
 
-/* youtube support */
+/* youtube and soundcloud support */
 
-$.fn.resetYoutube = function() {
+$.fn.resetExternal = function() {
     // hack to stop currently-playing videos
-    this.find("iframe.youtube").each(function(w, iframe) {
-	var video = $(iframe).attr("src").replace("&autoplay=1","");
+    this.find("iframe").each(function(w, iframe) {
+	var video = $(iframe).attr("src").replace("&autoplay=1","").replace("&amp;auto_play=true", "");
 	$(iframe).attr("src","").attr("hiddensrc",video);
     });
     return this;
 };
 
-$.fn.autoplayYoutube = function() {
-    this.find("iframe.youtube").each(function(i, iframe) {
-	var video = $(iframe).attr("hiddensrc");
-	var autoplay = i==0 ? "&autoplay=1" : "";
-	$(iframe).attr("hiddensrc", "").attr("src",video + autoplay);
+$.fn.autoplayExternal = function() {
+    if (this.hasClass('youtube')) {
+        this.attr("hiddensrc", this.attr("hiddensrc") + "&autoplay=1");
+    } else if (this.hasClass('soundcloudTrack') || this.hasClass('soundcloudPlaylist')) {
+        this.attr("hiddensrc", this.attr("hiddensrc") + "&amp;auto_play=true");
+    }
+}
+
+$.fn.showExternal = function() {
+    this.find("iframe").each(function(i, iframe) {
+        if (i==0) { $(iframe).autoplayExternal(); }
+        var src = $(iframe).attr('hiddensrc');
+	$(iframe).attr("hiddensrc", "").attr("src", src);
     });
     return this;
 };
 
-$.fn.enableYoutube = function() {
+$.fn.enableExternal = function() {
     this.find("a.youtube").each(function(w, link) {
         $(link)
 	    .replaceWith($("<iframe width='560' height='315' frameborder='0' allowfullscreen class='youtube'>")
 			 .attr('hiddensrc', $(link).attr('href') ));
+    });
+    this.find("a.soundcloudTrack").each(function(w, link) {
+        $(link)
+            .replaceWith($("<iframe width=\"560\" height=\"166\" scrolling=\"no\" frameborder=\"no\" class='soundcloudTrack'>")
+                         .attr('hiddensrc', $(link).attr('href') ));
+    });
+    this.find("a.soundcloudPlaylist").each(function(w, link) {
+        $(link)
+            .replaceWith($("<iframe width=\"100%\" height=\"450\" scrolling=\"no\" frameborder=\"no\" class='soundcloudPlaylist'>")
+                         .attr('hiddensrc', $(link).attr('href') ));
     });
     return this;
 };
@@ -38,8 +56,13 @@ $.fn.enableYoutube = function() {
 /* mailto links */
 
 $.fn.mailToLinks = function() {
+    var email = null;
     this.find("a.contactaddress").each(function(w,link) {
-	$(link).attr('href', "mailto:" + $(link).text().replace("(REMOVEME)",""));
+        email = $(link).text().replace("(REMOVEME)","");
+	$(link).attr('href', "mailto:" + email);
+    });
+    this.find("a.contactaddress_hidden").each(function(w,link) {
+        $(link).attr('href', "mailto:" + email);
     });
 };
 
@@ -121,15 +144,17 @@ $.fn.hideSubMenu = function() {
 /* hide/select the main page
    activates the <div class="mainpage" id="(1)"> where (1) is the href of the current option */
 
-$.fn.mainPageHide = function(anim) {
+$.fn.mainPageHide = function(anim, next) {
 
     if (anim) {
 	$("section#main div.mainpage.active")
 	    .removeClass("active")
 	    .animate({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' }, 500,
-		     function() { $(this).hide().resetYoutube(); $.waypoints('refresh'); });
+		     function() { $(this).hide().resetExternal(); $.waypoints('refresh');
+                                  if (next) { next(); }
+                                });
     } else {
-	$("section#main div.mainpage.active").removeClass("active").hide().resetYoutube();
+	$("section#main div.mainpage.active").removeClass("active").hide().resetExternal();
 	$.waypoints('refresh');
     }
 
@@ -150,8 +175,8 @@ $.fn.mainPageSelect = function() {
 	.css({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' })
 	.animate({ left: '0px'  },
 		 800,
-		 function () { $(this).autoplayYoutube(); })
-    // autoplayYoutube makes the first embedded youtube video play automatically
+		 function () { $(this).showExternal(); })
+    // showExternal makes the first embedded video/sound play automatically
     return this;
 
 };
@@ -217,7 +242,7 @@ function myRun(f) {
 
 function setupPage() {
 
-    $("#contact").mailToLinks();
+    $(".wrapall").mailToLinks();
     $("div.mainpage").targetLinks();
     if (Modernizr.svg) { $("header").switchToSVG(); }
 
@@ -250,15 +275,30 @@ function setupPage() {
 
 	if (mySubMenu.length == 0) {
 
-	    /* normal page, no submenu */
-	    $(".lavalamp").find("li.real").navDeactivateOption();
-	    $(this).parent().siblings(".lavalamp:visible").hideSubMenu();
-	    $(this).parent().mainPageHide(false).mainPageSelect();
-	    return false;
+            if ($(this).hasClass('active') && $(this).attr('href') != '#bio') {
+
+                $(this).removeClass('active');
+                $(this).parent().mainPageHide(true, function() {
+                    $("nav p a[href='#bio']").parent().mainPageSelectFade();
+                });
+                
+                
+            } else {
+                
+	        /* normal page, no submenu */
+	        $(".lavalamp").find("li.real").navDeactivateOption();
+                $(this).parent().siblings().find("a.active").removeClass('active');
+                $(this).addClass("active");
+	        $(this).parent().siblings(".lavalamp:visible").hideSubMenu();
+	        $(this).parent().mainPageHide(false).mainPageSelect();
+	        return false;
+                
+            }
 
 	} else {
 
 	    var otherSubMenus = $(this).parent().siblings(".lavalamp:visible").not(mySubMenu);
+            $(this).parent().siblings().find("a.active").removeClass('active');
 	    if (otherSubMenus.length > 0) { $(otherSubMenus).hideSubMenu(); delay = 200; }
 
 	}
@@ -278,13 +318,6 @@ function setupPage() {
 
     });
 
-    $("header #title a").click(function(event) {
-	event.stopPropagation();
-	$(".lavalamp").find("li.real").navDeactivateOption();
-	$(this).parent().mainPageHide(false).mainPageSelectFade();
-	return false;
-    });
-	    
 
     $(".lavalamp")
 	.lavaLamp(
@@ -321,7 +354,7 @@ function setupPage() {
 		  
 	      }
 	    });
-    
+
 };
 
 
@@ -333,8 +366,6 @@ function preAnimation() {
 	.css('opacity', '0.0');
     $("header #line")
         .css('width', '0px');
-    $("div.navheader")
-        .css('opacity', '0.0');
     $("nav")
 	.css('opacity', '0.0');
     $("nav li.real,nav p")
@@ -347,9 +378,12 @@ function preAnimation() {
 
 function postAnimation() {
 
+    $("nav p a[href='#bio']").parent().mainPageSelectFade();
     // load resources not shown in animation
     // (saves time since animation happens on $window.load)
-    $("section#main").enableYoutube();
+    setTimeout(function() {
+        $("section#main").enableExternal();
+    }, 900);
     
 }
 
@@ -361,12 +395,11 @@ function introAnimation() {
 //	      function(next) { $("header #line").animate({ width: '600px', opacity: '1.0' }, 1000, next) },
 	      myPar([ 
 		  function(next) { $("header #subtitle").animate({ opacity: '1.0' }, 1500, next) },
-		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); },
-		  function(next) { $("#construction").animate({ opacity: '1.0' }, 1000, next); }
+		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); }
+//		  function(next) { $("#construction").animate({ opacity: '1.0' }, 1000, next); }
 	      ]),
 	      myPar(
-		  [ function(next) { $("div.navheader").animate({opacity: '1.0'}, 1000, next); },
-		    function(next) { $("nav").animate({opacity: '1.0' }, 1000, next); },
+		  [ function(next) { $("nav").animate({opacity: '1.0' }, 1000, next); },
 		    function(next) { 
 			if ($("a.default").length > 0) {
 			    $("a.default").parent().mainPageSelectFade();
