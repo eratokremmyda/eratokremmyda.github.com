@@ -241,7 +241,7 @@ nav p a.active {
   color: black;
 }
 
-nav li.real {
+nav li, nav li.real {
     display: block;
     clear: both;
     float: right;
@@ -260,7 +260,7 @@ nav li.real a:active {
     display: block;
     width: 100%;
     transition: background-color 0.4s ease;
-    color: black;
+    color: rgb(69, 122, 204);
 }
 
 nav li.real a:hover {

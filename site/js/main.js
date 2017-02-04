@@ -3,8 +3,9 @@
 var navActivateCSS   = { backgroundColor: 'rgb(103, 148, 219)'};
 var navDeactivateCSS = { backgroundColor: 'rgb(246, 248, 252)'};
 
-
-$.extend( $.easing, { def : 'easeOutQuad' } );
+if (!$.support.transition)
+  $.fn.transition = $.fn.animate;
+// $.extend( $.easing, { def : 'easeOutQuad' } );
 
 /* youtube and soundcloud support */
 
@@ -31,6 +32,11 @@ $.fn.showExternal = function() {
         var src = $(iframe).attr('hiddensrc');
 	$(iframe).attr("hiddensrc", "").attr("src", src);
     });
+    if($(this).find(".photoalbum").length != 0) {
+        var initGalleries = window.initGalleries;
+        window.initGalleries = [];
+        $(initGalleries).each(function (i, fn) { window.setTimeout(fn(), 0); });
+    }
     return this;
 };
 
@@ -108,7 +114,7 @@ $.fn.showSubMenu = function() {
     var mySubMenu = $(this);
     myRun(mySeq([
 	function(next) { mySubMenu.show(100, next); },
-	function(next) { $.waypoints("refresh"); mySubMenu.find("li.real").stop(true,true)
+	function(next) { Waypoint.refreshAll(); mySubMenu.find("li.real").stop(true,true)
 			 .each(function(i,elm) {
 			     $(elm).css({ right: '-' + (50 + $(elm).width()) + 'px' });
 			 }); next(); },
@@ -130,10 +136,10 @@ $.fn.hideSubMenu = function() {
 	    mySubMenu.find("li.real").map( function(i, elm) {
 		var f = (function (next) { $(elm).delay( i * 30 ).animate({ right: '-' + (50 + $(elm).width()) + 'px' }, 100 + ( 20 * (Math.max(6-i,0) )), next); });
 		return f;
-	    }).add( function(next) { next(); } )),
+	    })),
 
 	function(next) { mySubMenu.hide(100, next); },
-	function(next) { $.waypoints("refresh"); next(); }
+	function(next) { Waypoint.refreshAll(); next(); }
 
     ]));
     return this;
@@ -149,13 +155,13 @@ $.fn.mainPageHide = function(anim, next) {
     if (anim) {
 	$("section#main div.mainpage.active")
 	    .removeClass("active")
-	    .animate({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' }, 500,
-		     function() { $(this).hide().resetExternal(); $.waypoints('refresh');
+	    .transition({ x: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' }, 500,
+		     function() { $(this).hide().resetExternal(); Waypoint.refreshAll();
                                   if (next) { next(); }
                                 });
     } else {
 	$("section#main div.mainpage.active").removeClass("active").hide().resetExternal();
-	$.waypoints('refresh');
+	Waypoint.refreshAll();
     }
 
     return this;
@@ -167,13 +173,14 @@ $.fn.mainPageSelect = function() {
     var id = $(this).find("a").attr("href").substring(1);
     if (id == "") return this;
 
-    $("section#main div.mainpage[id=\'" + id + "\']")
+    $("section#main div.mainpage#" + id)
 	.addClass("active")
 	.show();
-    $.waypoints('refresh');
-    $("section#main div.mainpage[id=\'" + id + "\']")
-	.css({ left: '-' + (Math.max($("section#main").width() + 50, 800)) + 'px' })
-	.animate({ left: '0px'  },
+    Waypoint.refreshAll();
+    var width = (Math.max($("section#main").width() + 50, 800));
+    $("section#main div.mainpage#" + id)
+	.css({ x: '-' + width + 'px' })
+        .transition({ x: '0px'  },
 		 800,
 		 function () { $(this).showExternal(); })
     // showExternal makes the first embedded video/sound play automatically
@@ -187,12 +194,12 @@ $.fn.mainPageSelectFade = function() {
     var id = $(this).find("a").attr("href").substring(1);
     if (id == "") return this;
 
-    $("section#main div.mainpage#[id=\'" + id + "\']")
+    $("section#main div.mainpage#" + id)
 	.addClass("active")
 	.show().css('opacity' , '0.0')
-	.animate({ 'opacity' : '1.0' },
+	.transition({ 'opacity' : '1.0' },
 		 800);
-    $.waypoints('refresh');
+    Waypoint.refreshAll();
     return this;
 
 };
@@ -248,19 +255,16 @@ function setupPage() {
 
     // anchoring of section#contact at the top of footer
 
-    $("footer").waypoint(function(event, direction) {
+    $("footer").waypoint(function(direction) {
 	$("section#contact")
 	    .toggleClass("fixed", direction === 'up')
 	    .toggleClass("anchored", direction === 'down');
-	$.waypoints('refresh');
-
-//	if (direction === 'down') { $("section#contact").removeClass("fixed").addClass("anchored"); $.waypoints('refresh'); }
-	event.stopPropagation();
-    }, { offset : function() { return $.waypoints('viewportHeight') - $("section#contact").outerHeight() - 5; } });
+        window.setTimeout(function() { Waypoint.refreshAll(); }, 0);
+    }, { offset : function() { return Waypoint.viewportHeight() - $("section#contact").outerHeight() - 5; } });
 
     /*
     $("#contact_anchor").waypoint(function(event, direction) {
-	if (direction === 'up') { $("section#contact").removeClass("anchored").addClass("fixed");  $.waypoints('refresh'); }
+	if (direction === 'up') { $("section#contact").removeClass("anchored").addClass("fixed");  Waypoint.refreshAll(); }
 	event.stopPropagation();
     }, { offset: 'bottom-in-view' });
     */
@@ -319,14 +323,8 @@ function setupPage() {
     });
 
 
-    $(".lavalamp")
-	.lavaLamp(
-	    { speed : 300, returnHome : true, includeMargins: true,
-	      homeTop : 0, homeLeft : 500, homeWidth: 500, homeHeight : 0,
-	      click : 
-
+    $(".lavalamp li.real").on('click',
 	      function(event) {
-
 		  event.stopPropagation();
 		  
 		  $(this).stop(true,true);
@@ -352,8 +350,7 @@ function setupPage() {
 
 		  return false;
 		  
-	      }
-	    });
+	      });
 
 };
 
@@ -391,15 +388,15 @@ function introAnimation() {
 
     myRun(
 	mySeq(
-	    [ function(next) { $("header #title").animate({ opacity: '1.0' }, 1500, next); },
+	    [ function(next) { $("header #title").transition({ opacity: '1.0' }, 1500, next); },
 //	      function(next) { $("header #line").animate({ width: '600px', opacity: '1.0' }, 1000, next) },
 	      myPar([ 
-		  function(next) { $("header #subtitle").animate({ opacity: '1.0' }, 1500, next) },
-		  function(next) { $("section#contact").animate({ opacity: '1.0' }, 1000, next); }
+		  function(next) { $("header #subtitle").transition({ opacity: '1.0' }, 1500, next) },
+		  function(next) { $("section#contact").transition({ opacity: '1.0' }, 1000, next); }
 //		  function(next) { $("#construction").animate({ opacity: '1.0' }, 1000, next); }
 	      ]),
 	      myPar(
-		  [ function(next) { $("nav").animate({opacity: '1.0' }, 1000, next); },
+		  [ function(next) { $("nav").transition({opacity: '1.0' }, 1000, next); },
 		    function(next) { 
 			if ($("a.default").length > 0) {
 			    $("a.default").parent().mainPageSelectFade();
@@ -426,7 +423,7 @@ $(window).ready(
     }
 );
 
-$(window).load(
+$(window).on("load",
     function() {
 	$("#loading").hide();
 	window.setTimeout(introAnimation, 500);
