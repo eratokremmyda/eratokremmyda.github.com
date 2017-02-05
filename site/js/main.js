@@ -1,7 +1,7 @@
 /* parameters */
 
-var navActivateCSS   = { backgroundColor: 'rgb(103, 148, 219)'};
-var navDeactivateCSS = { backgroundColor: 'rgb(246, 248, 252)'};
+var navActivateCSS   = { backgroundColor: 'rgb(119, 158, 217)'};
+var navDeactivateCSS = { backgroundColor: 'rgb(0, 0, 0)'};
 
 if (!$.support.transition)
   $.fn.transition = $.fn.animate;
@@ -114,12 +114,12 @@ $.fn.showSubMenu = function() {
     var mySubMenu = $(this);
     myRun(mySeq([
 	function(next) { mySubMenu.show(100, next); },
-	function(next) { Waypoint.refreshAll(); mySubMenu.find("li.real").stop(true,true)
+	function(next) { Waypoint.refreshAll(); mySubMenu.find("li.withanim").stop(true,true)
 			 .each(function(i,elm) {
 			     $(elm).css({ right: '-' + (50 + $(elm).width()) + 'px' });
 			 }); next(); },
 	myPar(
-	    mySubMenu.find("li.real").map( function(i, elm) {
+	    mySubMenu.find("li.withanim").map( function(i, elm) {
 		var f = (function (next) { $(elm).delay( i * 30 ).animate({ right: '0px' }, 100 + ( 20 * (Math.max(6-i,0) )), next); });
 		return f;
 	    })
@@ -133,7 +133,7 @@ $.fn.hideSubMenu = function() {
     myRun(mySeq([
 
 	myPar(
-	    mySubMenu.find("li.real").map( function(i, elm) {
+	    mySubMenu.find("li.withanim").map( function(i, elm) {
 		var f = (function (next) { $(elm).delay( i * 30 ).animate({ right: '-' + (50 + $(elm).width()) + 'px' }, 100 + ( 20 * (Math.max(6-i,0) )), next); });
 		return f;
 	    })),
@@ -365,7 +365,7 @@ function preAnimation() {
         .css('width', '0px');
     $("nav")
 	.css('opacity', '0.0');
-    $("nav li.real,nav p")
+    $("nav li.real,nav li.withanim,nav p")
         .css({ position: 'relative', right: '-' + (50 + $(this).width()) + 'px' });
     $("section#contact")
         .css('opacity', '0.0');

@@ -1,41 +1,9 @@
 /* Fonts */
 /* main color: rgb(117, 128, 216) */
 
-@font-face {
-      font-family: 'Linux Biolinum O';
-      src: url('../font/linbiolinum_r-webfont.eot');
-      src: url('../font/linbiolinum_r-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../font/linbiolinum_r-webfont.woff') format('woff'),
-      url('../font/linbiolinum_r-webfont.ttf') format('truetype'),
-      url('../font/linbiolinum_r-webfont.svg#LinuxBiolinumORegular') format('svg');
-      font-weight: normal;
-      font-style: normal;
-}
-
-@font-face {
-      font-family: 'Linux Biolinum O';
-      src: url('../font/linbiolinum_rb-webfont.eot');
-      src: url('../font/linbiolinum_rb-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../font/linbiolinum_rb-webfont.woff') format('woff'),
-      url('../font/linbiolinum_rb-webfont.ttf') format('truetype'),
-      url('../font/linbiolinum_rb-webfont.svg#LinuxBiolinumOBold') format('svg');
-      font-weight: bold;
-      font-style: normal;
-}
-
-@font-face {
-    font-family: 'Linux Biolinum O';
-    src: url('../font/linbiolinum_ri-webfont.eot');
-    src: url('../font/linbiolinum_ri-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../font/linbiolinum_ri-webfont.woff') format('woff'),
-         url('../font/linbiolinum_ri-webfont.ttf') format('truetype'),
-         url('../font/linbiolinum_ri-webfont.svg#LinuxBiolinumOItalic') format('svg');
-    font-weight: normal;
-    font-style: italic;
-}  
-
 /* Champagne And Limousines */
 /* A font by Lauren Thompson (Nymphont) -> www.nymfont.com */
+/*
 @font-face {
     font-family: 'Champagne And Limousines';
     src: url('../font/champagne__limousines-webfont.eot');
@@ -60,9 +28,11 @@
     font-style: normal;
 
 }
+*/
 
 /* Whipsmart */
 /* A font by Lauren Thompson (Nymphont) -> www.nymfont.com */
+/*
 @font-face {
     font-family: 'Whipsmart';
     src: url('../font/whipsmart_bold-webfont.eot');
@@ -87,6 +57,7 @@
     font-weight: normal;
     font-style: normal;
 }
+*/
 
 /* Make sure that footer is at the bottom of the screen */
 
@@ -107,19 +78,19 @@ footer    {
 /* general stuff */
 
 body {
-    color: black;
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-family: 'Linux Biolinum O', sans;
-    background: rgb(246, 248, 252);
+    font-family: 'Yantramanav', sans;
+    font-weight: 100;
+    background: rgb(0, 0, 0);
 }
 
 a, a:hover, a:visited, a:active {
     text-decoration: none;
-    color: rgb(100,100,100);
 }
 
 a:hover {
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .clearing { clear: both; }
@@ -159,19 +130,10 @@ header #title {
     color: rgb(69, 122, 204);
 }
 
-header #line  {
-    width: 600px;
-    height: 0px;
-    padding: 0px;
-    border-top: 3px solid black;
-    margin-top: 20px;
-}
-
 header #subtitle {
     font-size: 20px;
     letter-spacing: 3px;
     color: rgb(69, 122, 204);
-    font-family: 'Champagne And Limousines', 'Futura', serif;
     position:relative;
     left: -70px;
     top: -50px;
@@ -190,10 +152,10 @@ nav {
     display: block;
 
     /* 10 px around vertical line on the right */
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(255, 255, 255);
     padding-right: 10px;
 
-    font-family: 'Whipsmart', serif;
+    font-family: 'Yantramanav', sans;
     font-size: 20px;
     
     width: 290px;
@@ -209,7 +171,7 @@ nav ul        { list-style: none; }
 nav p {
     font-size: 1.4em;
     padding-bottom: 5px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(255, 255, 255);
     margin-top: 25px;
     margin-bottom: 5px;
     color: rgb(69, 122, 204);
@@ -228,20 +190,25 @@ nav p a:active {
   display: block;
   transition: background-color 0.4s ease;
   color: rgb(69, 122, 204);
-  background: rgb(246, 248, 252);
+  background: rgb(0, 0, 0);
 }
 
 nav p a:hover {
   background: rgb(69, 122, 204);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 nav p a.active {
-  background: rgb(103, 148, 219);
-  color: black;
+  background: rgb(119, 158, 217);
+  color: rgb(255, 255, 255);
 }
 
-nav li, nav li.real {
+nav hr {
+    border: none;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+nav li {
     display: block;
     clear: both;
     float: right;
@@ -251,6 +218,11 @@ nav li, nav li.real {
     margin-bottom: 2px;
 
     margin-right: 10px;
+    color: rgb(69, 122, 204);
+}
+
+nav li.withanim {
+    color: rgb(255, 255, 255);
 }
 
 nav li.real a,
@@ -259,13 +231,13 @@ nav li.real a:visited,
 nav li.real a:active {
     display: block;
     width: 100%;
-    transition: background-color 0.4s ease;
     color: rgb(69, 122, 204);
+    transition: background-color 0.4s ease;
 }
 
 nav li.real a:hover {
   background: rgb(69, 122, 204);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 nav li.backLava {
@@ -285,7 +257,6 @@ section#main p { margin-top: 0px; margin-left: 0px; margin-right: 10px;
 		 padding: 0; font-size: 20px; max-width: 650px;
 	         text-align: justify; }
 section#main p.title {
-    font-family: 'Champagne And Limousines', 'Futura', serif;
     font-size: 25px;
     margin-bottom: 0.5em;
 }
@@ -324,7 +295,7 @@ div.mainpage#news ul li {
     text-indent: -5px;
     border-bottom: 2px solid rgb(69, 122, 204);
     padding: 20px;
-    font-family: 'Champagne and Limousines', 'Futura', serif;
+    font-family: 'Yantramanav', sans;
     font-size: 20px;
     margin-top: 25px;
     margin-bottom: 25px;
@@ -344,11 +315,12 @@ div.mainpage {
 }
 
 div.mainpage.music {
-    font-family: 'Champagne and Limousines', 'Futura', serif;
+    font-family: 'Yantramanav', serif;
 }
 
 div.mainpage#bio {
     max-width: 850px;
+    color: rgb(69, 122, 204);
 }
 
 div.mainpage#bio img {
@@ -366,8 +338,14 @@ div.mainpage table {
     border-spacing: 0;
 }
 
+div.mainpage tr:nth-child(even) {
+    background: rgb(170, 194, 231);
+    color: rgb(0, 0, 0);
+}
+
 div.mainpage tr:nth-child(odd) {
-    background: rgb(208, 218, 239);
+    background: rgb(204, 218, 241);
+    color: rgb(0, 0, 0);
 }
 
 div.mainpage#cv table:first-of-type tr td:nth-of-type(1) {
@@ -384,6 +362,7 @@ div.mainpage#cv table:first-of-type tr td:nth-of-type(3) {
 
 div.mainpage#cv td {
     font-size: 15px;
+    font-weight: 300;
     margin: 0; padding: 5px;
 }
 
@@ -391,9 +370,10 @@ div.mainpage#cv tr {
     margin-bottom: 10px;
 }
 
-div.mainpage#cv div.subtitle {
+div.mainpage#cv .subtitle, div.mainpage#cv .firstSubtitle {
     font-size: 23px;
-    color: rgb(69, 122, 204);
+    font-weight: 300;
+    color: rgb(255, 255, 255);
     display: block;
     width: 100%;
 }
@@ -411,7 +391,7 @@ div.mainpage#news .title {
 section#contact {
 
     background: rgb(69, 122, 204);
-    color: white;
+    color: rgb(255, 255, 255);
 
     display: block;
 
@@ -437,7 +417,7 @@ section#contact.fixed {
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
     box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
 
-//    background: rgb(246, 248, 252);
+//    background: rgb(0, 0, 0);
 //    border-top: 1px solid rgb(69, 122, 204);
 //    color: rgb(69, 122, 204);
 
@@ -460,8 +440,8 @@ section#contact a,
 section#contact a:hover,
 section#contact a:visited,
 section#contact a:active {
-    color: white;
-    border-bottom: 1px dotted white;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px dotted rgb(255, 255, 255);
 }
 
 section#contact.fixed a,
@@ -503,7 +483,6 @@ div.mainpage#photos {
 
 .photogallerytitle {
     text-align: center;
-    font-family: 'Champagne And Limousines', 'Futura', serif;
     width: 100%;
     display: block;
     font-size: 23px;
@@ -511,7 +490,6 @@ div.mainpage#photos {
 
 .photogallerysubtitle {
     text-align: left;
-    font-family: 'Champagne And Limousines', 'Futura', serif;
     width: 100%;
     text-align: justify;
     display: block;
@@ -521,7 +499,7 @@ div.mainpage#photos {
 .photocaption {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-family: 'Linux Biolinum O', sans;
+    font-family: 'Yantramanav', sans;
     font-size: 23px;
 }
 
@@ -529,9 +507,10 @@ div.mainpage#photos {
 
 footer {
     clear: both;
-    color: white;
+    color: rgb(255, 255, 255);
     background: rgb(69, 122, 204);
     font-size: 0.8em;
+    font-weight: bold;
 
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
