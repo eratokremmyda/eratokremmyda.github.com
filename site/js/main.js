@@ -1,7 +1,7 @@
 /* parameters */
 
-var navActivateCSS   = { backgroundColor: 'rgb(119, 158, 217)'};
-var navDeactivateCSS = { backgroundColor: 'rgb(0, 0, 0)'};
+var navActivateCSS   = { backgroundColor: 'rgb(204, 223, 253)'};
+var navDeactivateCSS = { backgroundColor: 'rgb(69, 122, 204)'};
 
 if (!$.support.transition)
   $.fn.transition = $.fn.animate;

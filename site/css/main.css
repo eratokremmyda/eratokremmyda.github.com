@@ -81,8 +81,7 @@ body {
     color: rgb(255, 255, 255);
     text-align: center;
     font-family: 'Yantramanav', sans;
-    font-weight: 100;
-    background: rgb(0, 0, 0);
+    background: rgb(69, 122, 204);
 }
 
 a, a:hover, a:visited, a:active {
@@ -103,6 +102,7 @@ a:hover {
     position: absolute;
     right: 20px;
     bottom: 50px;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -127,13 +127,13 @@ header div {
 header #title {
     font-size: 120px;
     font-family: serif;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
 }
 
 header #subtitle {
     font-size: 20px;
     letter-spacing: 3px;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
     position:relative;
     left: -70px;
     top: -50px;
@@ -174,7 +174,7 @@ nav p {
     border-bottom: 1px solid rgb(255, 255, 255);
     margin-top: 25px;
     margin-bottom: 5px;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
     clear: both;
     margin-right: 10px;
     margin-left: 50px;
@@ -189,18 +189,18 @@ nav p a:active {
   width: 100%;
   display: block;
   transition: background-color 0.4s ease;
-  color: rgb(69, 122, 204);
-  background: rgb(0, 0, 0);
+  color: rgb(193, 217, 253);
+  background: rgb(69, 122, 204);
 }
 
 nav p a:hover {
-  background: rgb(69, 122, 204);
-  color: rgb(255, 255, 255);
+  background: rgb(193, 217, 253);
+  color: rgb(69, 122, 204);
 }
 
 nav p a.active {
-  background: rgb(119, 158, 217);
-  color: rgb(255, 255, 255);
+  background: rgb(204, 223, 253);
+  color: rgb(69, 122, 204);
 }
 
 nav hr {
@@ -218,7 +218,7 @@ nav li {
     margin-bottom: 2px;
 
     margin-right: 10px;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
 }
 
 nav li.withanim {
@@ -231,13 +231,13 @@ nav li.real a:visited,
 nav li.real a:active {
     display: block;
     width: 100%;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
     transition: background-color 0.4s ease;
 }
 
 nav li.real a:hover {
-  background: rgb(69, 122, 204);
-  color: rgb(255, 255, 255);
+  background: rgb(193, 217, 253);
+  color: rgb(69, 122, 204);
 }
 
 nav li.backLava {
@@ -259,24 +259,25 @@ section#main p { margin-top: 0px; margin-left: 0px; margin-right: 10px;
 section#main p.title {
     font-size: 25px;
     margin-bottom: 0.5em;
+    color: rgb(193, 217, 253) ;
 }
 
 section#main p.subtitle {
     font-size: 23px;
     margin-bottom: 1em;
     margin-top: 2em; 
-    color: rgb(69, 122, 204) ;
+    color: rgb(193, 217, 253) ;
 }
 
 section#main p.firstSubtitle {
     font-size: 23px;
-    color: rgb(69, 122, 204) ;
+    color: rgb(193, 217, 253) ;
 }
 
 section#main a,
 section#main a:active,
 section#main a:hover,
-section#main a:visited { color : rgb(69, 122, 204) ;
+section#main a:visited { color : rgb(193, 217, 253) ;
 			 font-weight: bold; }
 
 section#main ul { margin-top: 0px; margin-left: 0px; margin-right: 10px;
@@ -287,13 +288,13 @@ section#main ul { margin-top: 0px; margin-left: 0px; margin-right: 10px;
                 }
 
 div.mainpage#news ul li:before{
-    content:"*"; position:relative; left:-10px; color: rgb(69, 122, 204);
+    content:"*"; position:relative; left:-10px; color: rgb(193, 217, 253);
     top: 5px;
 }
 
 div.mainpage#news ul li {
     text-indent: -5px;
-    border-bottom: 2px solid rgb(69, 122, 204);
+    border-bottom: 2px solid rgb(193, 217, 253);
     padding: 20px;
     font-family: 'Yantramanav', sans;
     font-size: 20px;
@@ -320,7 +321,7 @@ div.mainpage.music {
 
 div.mainpage#bio {
     max-width: 850px;
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
 }
 
 div.mainpage#bio img {
@@ -362,7 +363,6 @@ div.mainpage#cv table:first-of-type tr td:nth-of-type(3) {
 
 div.mainpage#cv td {
     font-size: 15px;
-    font-weight: 300;
     margin: 0; padding: 5px;
 }
 
@@ -372,8 +372,7 @@ div.mainpage#cv tr {
 
 div.mainpage#cv .subtitle, div.mainpage#cv .firstSubtitle {
     font-size: 23px;
-    font-weight: 300;
-    color: rgb(255, 255, 255);
+    color: rgb(193, 217, 253) ;
     display: block;
     width: 100%;
 }
@@ -383,15 +382,15 @@ div.mainpage#news {
 }
 
 div.mainpage#news .title {
-    color: rgb(69, 122, 204);
+    color: rgb(193, 217, 253);
 }
 
 /* contact section */
 
 section#contact {
 
-    background: rgb(69, 122, 204);
-    color: rgb(255, 255, 255);
+    background: rgb(193, 217, 253);
+    color: rgb(69, 122, 204);
 
     display: block;
 
@@ -417,9 +416,9 @@ section#contact.fixed {
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
     box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
 
-//    background: rgb(0, 0, 0);
-//    border-top: 1px solid rgb(69, 122, 204);
-//    color: rgb(69, 122, 204);
+//    background: rgb(69, 122, 204);
+//    border-top: 1px solid rgb(193, 217, 253);
+//    color: rgb(193, 217, 253);
 
 }
 
@@ -440,16 +439,16 @@ section#contact a,
 section#contact a:hover,
 section#contact a:visited,
 section#contact a:active {
-    color: rgb(255, 255, 255);
-    border-bottom: 1px dotted rgb(255, 255, 255);
+    color: rgb(69, 122, 204);
+    border-bottom: 1px dotted rgb(69, 122, 204);
 }
 
 section#contact.fixed a,
 section#contact.fixed a:hover,
 section#contact.fixed a:visited,
 section#contact.fixed a:active {
-//    color: rgb(69, 122, 204);
-//    border-bottom: 1px dotted rgb(69, 122, 204);
+//    color: rgb(193, 217, 253);
+//    border-bottom: 1px dotted rgb(193, 217, 253);
 }
 
 #construction {
@@ -486,6 +485,7 @@ div.mainpage#photos {
     width: 100%;
     display: block;
     font-size: 23px;
+    color: rgb(193, 217, 253);
 }
 
 .photogallerysubtitle {
@@ -494,6 +494,7 @@ div.mainpage#photos {
     text-align: justify;
     display: block;
     font-size: 18px;
+    color: rgb(193, 217, 253);
 }
 
 .photocaption {
@@ -507,8 +508,8 @@ div.mainpage#photos {
 
 footer {
     clear: both;
-    color: rgb(255, 255, 255);
-    background: rgb(69, 122, 204);
+    color: rgb(69, 122, 204);
+    background: rgb(193, 217, 253);
     font-size: 0.8em;
     font-weight: bold;
 
