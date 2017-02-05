@@ -207,12 +207,12 @@ $.fn.mainPageSelectFade = function() {
 
 $.fn.switchToSVG = function() {
     $("img.replacesvg").each(
-	function (i, img) {
-	    var src = $(img).attr("src").replace("png","svg");
-	    var width = $(img).css('width');
-	    var height = $(img).css('height');
-	    $(img).attr('src', src);
-	}
+        function (i, img) {
+            var src = $(img).attr("src").replace("png","svg");
+            var width = $(img).css('width');
+            var height = $(img).css('height');
+            $(img).attr('src', src);
+        }
     );
 
 }
