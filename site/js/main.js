@@ -1,7 +1,7 @@
 /* parameters */
 
-var navActivateCSS   = { backgroundColor: 'rgb(204, 223, 253)'};
-var navDeactivateCSS = { backgroundColor: 'rgb(69, 122, 204)'};
+// var navActivateCSS   = { backgroundColor: ''};
+// var navDeactivateCSS = { backgroundColor: ''};
 
 if (!$.support.transition)
   $.fn.transition = $.fn.animate;
@@ -81,29 +81,35 @@ $.fn.targetLinks = function() {
 /* nav menu options */
 
 $.fn.navActivateOption = function() {
-    $(this)
-	.stop(true,true)
-	.animate(navActivateCSS,
-		 800,
-		 function() { $(this).addClass("active") });
+    $(this).stop(true,true).addClass("active");
     return this;
+    // $(this)
+    //     .stop(true,true)
+    //     .animate(navActivateCSS,
+    //     	 800,
+    //     	 function() { $(this).addClass("active") });
+    // return this;
 };
 
 $.fn.navDeactivateOption = function() {
     $(this).each(function (i,n) {
-	$(n).stop(true,true).removeClass("active");
-	var bgcolor = $(n).css('backgroundColor');
-	if (bgcolor != "none" && bgcolor != "rgba(0,0,0,0)" && bgcolor != "rgba(0, 0, 0, 0)" &&
-	    bgcolor != "transparent" && bgcolor != "inherit") {
-	    $(n)
-		.animate(navDeactivateCSS,
-			 800,
-			 function() {
-			     $(n).css('background', 'transparent');
-			 });
-	}
+        $(n).stop(true,true).removeClass("active");
     });
     return this;
+    // $(this).each(function (i,n) {
+    //     $(n).stop(true,true).removeClass("active");
+    //     var bgcolor = $(n).css('backgroundColor');
+    //     if (bgcolor != "none" && bgcolor != "rgba(0,0,0,0)" && bgcolor != "rgba(0, 0, 0, 0)" &&
+    //         bgcolor != "transparent" && bgcolor != "inherit") {
+    //         $(n)
+    //     	.animate(navDeactivateCSS,
+    //     		 800,
+    //     		 function() {
+    //     		     $(n).css('background', 'transparent');
+    //     		 });
+    //     }
+    // });
+    // return this;
 };
 
 
