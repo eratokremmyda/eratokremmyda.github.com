@@ -421,18 +421,42 @@ function introAnimation() {
 
 };
 
+function setupPostAnimation() {
+
+    $(".wrapmain")
+        .css('opacity', '1.0');
+    $("header > div")
+	.css('opacity', '1.0');
+    $("nav")
+	.css('opacity', '1.0');
+    $("nav p")
+        .css({ position: 'relative', right: '0px' });
+    $("section#contact")
+        .css('opacity', '1.0');
+
+}
+
 
 $(window).ready(
     function() {
-	preAnimation();
-	setupPage();
+ 	preAnimation();
+ 	setupPage();
     }
 );
 
 $(window).on("load",
     function() {
 	$("#loading").hide();
-	window.setTimeout(introAnimation, 500);
+        var hash;
+        var match = (window.location && window.location.href && window.location.href.match) ? window.location.href.match(/(?:#!\/|#)([a-z_\-]+)$/) : null;
+        if (match) { hash = match[1]; }
+        if (hash && $("nav a[href='#" + hash + "']")) {
+            $(window).scrollTop(0);
+            setupPostAnimation();
+            $("section#main").enableExternal();
+            $("nav a[href='#" + hash + "']").parent().mainPageSelect(true);
+        } else {
+	    window.setTimeout(introAnimation, 500);
+        }
     }
 );
-
