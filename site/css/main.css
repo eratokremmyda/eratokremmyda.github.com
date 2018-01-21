@@ -91,7 +91,7 @@ header #title {
 header #subtitle {
   font-size: 20px;
   letter-spacing: 3px;
-  color: #c1d9fd;
+  color: white;
   position: relative;
   left: -70px;
   top: -50px;
@@ -111,7 +111,8 @@ nav {
   font-size: 20px;
   width: 290px;
   overflow: hidden;
-  float: left; }
+  float: left;
+  padding-bottom: 15px; }
 
 nav ul, nav p {
   text-align: right; }
@@ -228,7 +229,7 @@ section#main ul {
   margin-top: 0px;
   margin-left: 0px;
   margin-right: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 52px;
   padding: 0;
   font-size: 20px;
   text-align: justify;
@@ -250,6 +251,9 @@ div.mainpage#news ul li {
   margin-top: 25px;
   margin-bottom: 25px;
   margin-left: 50px; }
+
+div.mainpage#news ul li:first-of-type {
+  margin-top: 0px; }
 
 section#main h6, section#main .small {
   font-size: 15px;
