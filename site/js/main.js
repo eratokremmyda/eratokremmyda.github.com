@@ -451,10 +451,12 @@ $(window).on("load",
         var match = (window.location && window.location.href && window.location.href.match) ? window.location.href.match(/(?:#!\/|#)([a-z_\-]+)$/) : null;
         if (match) { hash = match[1]; }
         if (hash && $("nav a[href='#" + hash + "']")) {
-            $(window).scrollTop(0);
-            setupPostAnimation();
-            $("section#main").enableExternal();
-            $("nav a[href='#" + hash + "']").parent().mainPageSelect(true);
+            window.setTimeout(function () {
+              $(window).scrollTop(0);
+              setupPostAnimation();
+              $("section#main").enableExternal();
+              $("nav a[href='#" + hash + "']").parent().mainPageSelect(true);
+            }, 100);
         } else {
 	    window.setTimeout(introAnimation, 500);
         }
