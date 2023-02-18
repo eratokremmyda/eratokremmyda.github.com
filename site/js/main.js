@@ -30,7 +30,7 @@ $.fn.showExternal = function() {
     this.find("iframe").each(function(i, iframe) {
         if (i==0) { $(iframe).autoplayExternal(); }
         var src = $(iframe).attr('hiddensrc');
-	$(iframe).attr("hiddensrc", "").attr("src", src);
+	    $(iframe).attr("hiddensrc", "").attr("src", src);
     });
     if($(this).find(".photoalbum").length != 0) {
         var initGalleries = window.initGalleries;
@@ -53,7 +53,7 @@ $.fn.enableExternal = function() {
     });
     this.find("a.soundcloudPlaylist").each(function(w, link) {
         $(link)
-            .replaceWith($("<iframe width=\"100%\" height=\"450\" scrolling=\"no\" frameborder=\"no\" class='soundcloudPlaylist'>")
+            .replaceWith($("<iframe width=\"100%\" height=\"400\" scrolling=\"no\" frameborder=\"no\" class='soundcloudPlaylist'>")
                          .attr('hiddensrc', $(link).attr('href') ));
     });
     return this;
